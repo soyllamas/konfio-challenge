@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:konfio_challenge/data/datasource/local/dog_local_dto.dart';
 import 'package:konfio_challenge/domain/entity/dog.dart';
 
 part 'dog_remote_dto.g.dart';
@@ -29,5 +30,12 @@ extension Mapper on DogRemoteDto {
         imageUrl: image,
         description: description,
         age: age,
+      );
+
+  DogLocalDto toLocalDto() => DogLocalDto(
+        name: dogName,
+        age: age,
+        description: description,
+        imageUrl: image,
       );
 }

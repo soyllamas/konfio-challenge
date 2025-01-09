@@ -59,7 +59,6 @@ class DogTile extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          // TODO: i18n
                           'Almost $years Years',
                           style: context.textTheme.bodySmall,
                         ),
@@ -78,7 +77,20 @@ class DogTile extends StatelessWidget {
                   aspectRatio: 2 / 3,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(imageUrl, fit: BoxFit.cover),
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, chunk) {
+                        return ColoredBox(
+                          color: Color.lerp(
+                            context.colorScheme.secondary,
+                            context.colorScheme.surface,
+                            0.5,
+                          )!,
+                          child: child,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:konfio_challenge/data/datasource/remote/dog_remote_client.dart';
+import 'package:konfio_challenge/data/datasource/local/app_database.dart';
+import 'package:konfio_challenge/data/datasource/remote/app_client.dart';
 import 'package:konfio_challenge/data/repository/dog_repository_impl.dart';
 import 'package:konfio_challenge/domain/data/dog_repository.dart';
 import 'package:konfio_challenge/presentation/home/home_cubit.dart';
@@ -8,22 +9,20 @@ import 'package:konfio_challenge/presentation/home/home_cubit.dart';
 final sl = GetIt.instance;
 
 Future<void> registerDependencies() async {
+  // Initialize Dependencies
+  final database = await $FloorAppDatabase.databaseBuilder('app.db').build();
+
   // Third-party
-  sl.registerLazySingleton(() => Dio());
-  sl.registerLazySingleton(() => DogRemoteClient(sl()));
-  // TODO: sl.registerLazySingleton() for floor
+  sl.registerSingleton(Dio());
+  sl.registerSingleton(AppClient(sl()));
+  sl.registerSingleton(database.dogDao);
 
   // Data
-  sl.registerSingleton<DogRepository>(DogRepositoryImpl(sl()));
+  sl.registerSingleton<DogRepository>(DogRepositoryImpl(sl(), sl()));
 
   // Presentation
-  sl.registerSingleton(HomeCubit(sl()));
+  sl.registerFactory(() => HomeCubit(sl()));
 }
-
-// TODO: Finish data layer (check claude):
-// TODO: - Integrate dio
-// TODO: - Integrate retrofit
-// TODO: - Integrate floor
 
 // TODO: Add i18n
 
