@@ -1,20 +1,25 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
+import 'package:konfio_challenge/data/datasource/remote/dog_remote_client.dart';
+import 'package:konfio_challenge/data/datasource/remote/dog_remote_dto.dart';
 import 'package:konfio_challenge/domain/data/dog_repository.dart';
-import 'package:konfio_challenge/domain/entity/dog.dart';
 
 class DogRepositoryImpl implements DogRepository {
-  DogRepositoryImpl();
+  final DogRemoteClient _dogRemoteClient;
+
+  DogRepositoryImpl(this._dogRemoteClient);
 
   @override
   Future<DogFetchResponse> fetch() async {
-    return const Success([
-      Dog(
-        name: 'Bulldog',
-        imageUrl:
-            'https://images.dog.ceo/breeds/schnauzer-giant/n02097130_5117.jpg',
-        description:
-            'The Bulldog, also known as the British Bulldog or English Bulldog, is a medium-sized breed of dog. It is a muscular, hefty dog with a wrinkled face and a distinctive pushed-in nose.',
-        age: 3,
-      ),
-    ]);
+    try {
+      final dogs = await _dogRemoteClient.getDogs();
+      return Success(dogs.map((dto) => dto.toDomain()).toList());
+    } on DioException {
+      return const NetworkError();
+    } catch (e, stack) {
+      log('failed to get dogs', error: e, stackTrace: stack);
+      return const Failed();
+    }
   }
 }

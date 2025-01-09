@@ -27,7 +27,7 @@ final _theme = ThemeData(
     ),
   ),
   appBarTheme: const AppBarTheme(
-    color: Color(0xFF763DBD),
+    color: Color(0xFF8F1A1D),
     titleTextStyle: TextStyle(
       color: Colors.white,
       fontSize: 24.0,
