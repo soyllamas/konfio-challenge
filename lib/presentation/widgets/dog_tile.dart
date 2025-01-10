@@ -59,7 +59,7 @@ class DogTile extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'Almost $years Years',
+                          context.l10n.dogAge(years),
                           style: context.textTheme.bodySmall,
                         ),
                       ],

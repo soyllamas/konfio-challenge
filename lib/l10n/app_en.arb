@@ -1,0 +1,13 @@
+{
+  "title": "Dogs We Love",
+  "dogAge": "{age, plural, =1{Almost 1 year} other{Almost {age} years}}",
+  "@dogAge": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "networkError": "We're having trouble connecting. Please check your internet connection.",
+  "unknownError": "Oops, something went wrong..."
+}

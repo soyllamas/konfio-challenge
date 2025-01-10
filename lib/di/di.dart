@@ -26,6 +26,10 @@ Future<void> registerDependencies() async {
 
 // TODO: Add i18n
 
+// TODO: Update spanish .arb file
+
 // TODO: Add Unit Tests
 
 // TODO: Add Readme.md
+
+// TODO: Maybe? update DogTile for better performance and tablet/desktop support.

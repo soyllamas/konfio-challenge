@@ -12,19 +12,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dogs We Love!'),
+        title: Text(context.l10n.title),
       ),
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.error == HomeError.network) {
-            showMessage(context,
-                'We\'re having trouble connecting. Please check your internet connection.');
+            showMessage(context, context.l10n.networkError);
             context.read<HomeCubit>().didShowError();
             return;
           }
 
           if (state.error == HomeError.unknown) {
-            showMessage(context, 'Oops, something went wrong...');
+            showMessage(context, context.l10n.unknownError);
             context.read<HomeCubit>().didShowError();
             return;
           }

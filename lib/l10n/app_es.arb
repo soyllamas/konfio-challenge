@@ -1,0 +1,13 @@
+{
+  "title": "Perros Que Amamos",
+  "dogAge": "{age, plural, =1{Casi 1 año} other{Casi {age} años}}",
+  "@dogAge": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "networkError": "Estamos teniendo problemas para conectarnos. Por favor verifica tu conexión a internet.",
+  "unknownError": "Ups, algo salió mal..."
+}
