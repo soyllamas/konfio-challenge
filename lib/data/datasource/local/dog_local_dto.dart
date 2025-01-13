@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 import 'package:konfio_challenge/domain/entity/dog.dart';
 
 @Entity(tableName: 'dogs')
-class DogLocalDto {
+class DogLocalDto extends Equatable {
   @primaryKey
   final String name;
   final int age;
@@ -15,6 +16,15 @@ class DogLocalDto {
     required this.description,
     required this.imageUrl,
   });
+
+  @override
+  @ignore
+  List<Object?> get props => [
+        name,
+        age,
+        description,
+        imageUrl,
+      ];
 }
 
 extension Mapper on DogLocalDto {

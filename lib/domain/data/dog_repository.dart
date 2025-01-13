@@ -9,7 +9,7 @@ sealed class DogFetchResponse extends Equatable {
   const DogFetchResponse();
 
   @override
-  List<Object> get props => [hashCode];
+  List<Object> get props => [];
 }
 
 class Success extends DogFetchResponse {

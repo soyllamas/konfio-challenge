@@ -24,10 +24,6 @@ Future<void> registerDependencies() async {
   sl.registerFactory(() => HomeCubit(sl()));
 }
 
-// TODO: Add i18n
-
-// TODO: Update spanish .arb file
-
 // TODO: Add Unit Tests
 
 // TODO: Add Readme.md
