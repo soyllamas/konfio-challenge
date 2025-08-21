@@ -97,5 +97,5 @@ sh coverage.sh
 Daniel Llamas, Android Developer
 [soyllamas.com](https://soyllamas.com)
 
-Made with ❤️ from Daniel. 
+Made with ❤️ by @soyllamas.
 
